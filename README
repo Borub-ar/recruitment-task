@@ -39,7 +39,7 @@ Pod spodem (w tym pliku README) dodaj opis, w którym wyjaśnisz:
 - biblioteki: także dowolne. W naszej firmie skupiamy się głównie na Highcharts, ale nie wymagamy znajomości akurat tej biblioteki, więc jeśli chcesz użyć innej prostszej - gorąco do tego zachęcamy.
 
 
-### Uruchomienie projektu
+## Uruchomienie projektu
 Pod spodem (w tym pliku README) opisz wymagania (np. Node, Python, serwer lokalny) i kroki potrzebne do uruchomienia Twojego projektu.
 Projekt powinien być **łatwy do uruchomienia lokalnie** bez dodatkowych wyjaśnień.
 
