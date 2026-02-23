@@ -91,6 +91,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 article,
 aside,
 details,
@@ -104,14 +105,17 @@ nav,
 section {
   display: block;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -119,6 +123,7 @@ q:after {
   content: '';
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -144,13 +149,9 @@ table {
 
 body {
   line-height: 1.5;
-  min-height: 100vh;
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
-}
-
-#root {
-  min-height: 100vh;
 }
