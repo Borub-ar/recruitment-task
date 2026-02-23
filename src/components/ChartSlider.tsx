@@ -6,7 +6,16 @@ import styles from './ChartSlider.module.css';
 import data from '../../data/data.json' with { type: 'json' };
 
 const ChartSlider = () => {
+  console.log(data);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const revenueByCountryChartData = data.orders.map(order => {
+    return {
+      country: order.country,
+      quantity: order.quantity,
+      unitPrice: order.unitPrice,
+    }
+  })
 
   const handlePrevious = () => {
     setCurrentSlide(currentSlide - 1);
@@ -19,7 +28,7 @@ const ChartSlider = () => {
   return (
     <div className={styles.slider}>
       <div className={styles.slide}>
-        <RevenueByCountryChart />
+        <RevenueByCountryChart data={revenueByCountryChartData} />
       </div>
 
       <div className={styles.controls}>
