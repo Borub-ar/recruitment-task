@@ -1,7 +1,9 @@
+import ChartSlider from "./components/ChartSlider"
+
 function App() {
   return (
     <main>
-      <h1>Data Visualization</h1>
+      <ChartSlider />
     </main>
   )
 }
