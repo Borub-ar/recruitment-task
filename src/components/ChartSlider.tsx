@@ -8,7 +8,14 @@ import data from '../../data/data.json' with { type: 'json' };
 const ChartSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  console.log(data);
+  const handlePrevious = () => {
+    setCurrentSlide(currentSlide - 1);
+  };
+
+  const handleNext = () => {
+    setCurrentSlide(currentSlide + 1);
+  };
+
   return (
     <div className={styles.slider}>
       <div className={styles.slide}>
@@ -16,13 +23,17 @@ const ChartSlider = () => {
       </div>
 
       <div className={styles.controls}>
-        <button className={styles.btn}>Previous</button>
+        <button className={styles.btn} onClick={handlePrevious}>
+          Previous
+        </button>
         <div className={styles.dots}>
-          <div className={styles.dot}></div>
-          <div className={styles.dot}></div>
-          <div className={styles.dot}></div>
+          <div className={`${styles.dot} ${currentSlide === 0 ? styles.dotActive : ''}`}></div>
+          <div className={`${styles.dot} ${currentSlide === 1 ? styles.dotActive : ''}`}></div>
+          <div className={`${styles.dot} ${currentSlide === 2 ? styles.dotActive : ''}`}></div>
         </div>
-        <button className={styles.btn}>Next</button>
+        <button className={styles.btn} onClick={handleNext}>
+          Next
+        </button>
       </div>
     </div>
   );
