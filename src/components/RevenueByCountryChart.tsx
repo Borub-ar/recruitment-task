@@ -15,9 +15,10 @@ interface RevenueByCountryChartProps {
 const RevenueByCountryChart = ({ data }: RevenueByCountryChartProps) => {
   const revenueByCountry = aggregateRevenueByCountry(data);
   console.log(revenueByCountry);
+
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>Przychód według kraju</h2>
+      <h2 className={styles.title}>Revenue by country</h2>
     </div>
   );
 };
