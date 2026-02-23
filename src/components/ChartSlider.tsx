@@ -1,11 +1,15 @@
-import RevenueByCountryChart from "./RevenueByCountryChart"
+import RevenueByCountryChart from './RevenueByCountryChart';
+
+import styles from './ChartSlider.module.css';
 
 const ChartSlider = () => {
   return (
-    <div>
+    <div className={styles.slider}>
+      <div className={styles.slide}>
         <RevenueByCountryChart />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChartSlider
+export default ChartSlider;
