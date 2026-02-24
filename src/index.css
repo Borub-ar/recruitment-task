@@ -153,5 +153,4 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   overflow: hidden;
-  -webkit-font-smoothing: antialiased;
 }

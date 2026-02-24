@@ -1,4 +1,5 @@
 import ChartSlider from './components/ChartSlider';
+
 import styles from './App.module.css';
 
 function App() {

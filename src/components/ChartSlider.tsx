@@ -6,7 +6,6 @@ import styles from './ChartSlider.module.css';
 import data from '../../data/data.json' with { type: 'json' };
 
 const ChartSlider = () => {
-  console.log(data);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const revenueByCountryChartData = data.orders.map(order => {
@@ -14,8 +13,8 @@ const ChartSlider = () => {
       country: order.country,
       quantity: order.quantity,
       unitPrice: order.unitPrice,
-    }
-  })
+    };
+  });
 
   const handlePrevious = () => {
     setCurrentSlide(currentSlide - 1);
@@ -35,11 +34,13 @@ const ChartSlider = () => {
         <button className={styles.btn} onClick={handlePrevious}>
           Previous
         </button>
+
         <div className={styles.dots}>
           <div className={`${styles.dot} ${currentSlide === 0 ? styles.dotActive : ''}`}></div>
           <div className={`${styles.dot} ${currentSlide === 1 ? styles.dotActive : ''}`}></div>
           <div className={`${styles.dot} ${currentSlide === 2 ? styles.dotActive : ''}`}></div>
         </div>
+
         <button className={styles.btn} onClick={handleNext}>
           Next
         </button>

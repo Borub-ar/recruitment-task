@@ -23,13 +23,12 @@ const aggregateRevenueByCountry = (orders: Order[]) => {
         revenue: 0,
       };
     }
-
     acc[country].revenue += revenue;
 
     return acc;
   }, {});
 
-  return revenueByCountry;
+  return Object.entries(revenueByCountry).map(item => ({ country: item[0], revenue: item[1].revenue }));
 };
 
 export default aggregateRevenueByCountry;
