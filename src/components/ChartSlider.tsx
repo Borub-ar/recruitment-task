@@ -5,43 +5,65 @@ import styles from './ChartSlider.module.css';
 
 import data from '../../data/data.json' with { type: 'json' };
 
+const SLIDE_COUNT = 3;
+
 const ChartSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const revenueByCountryChartData = data.orders.map(order => {
-    return {
-      country: order.country,
-      quantity: order.quantity,
-      unitPrice: order.unitPrice,
-    };
-  });
+  const revenueByCountryChartData = data.orders.map(order => ({
+    country: order.country,
+    quantity: order.quantity,
+    unitPrice: order.unitPrice,
+  }));
 
   const handlePrevious = () => {
-    setCurrentSlide(currentSlide - 1);
+    setCurrentSlide(prev => Math.max(0, prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentSlide(currentSlide + 1);
+    setCurrentSlide(prev => Math.min(SLIDE_COUNT - 1, prev + 1));
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
   };
 
   return (
     <div className={styles.slider}>
-      <div className={styles.slide}>
-        <RevenueByCountryChart data={revenueByCountryChartData} />
+      <div className={styles.slidesWrapper}>
+        <div
+          className={styles.slidesTrack}
+          style={{ transform: `translateX(-${currentSlide * (100 / SLIDE_COUNT)}%)` }}>
+          <div className={styles.slide}>
+            <RevenueByCountryChart data={revenueByCountryChartData} />
+          </div>
+          <div className={styles.slide}>
+            <RevenueByCountryChart data={revenueByCountryChartData} />
+          </div>
+          <div className={styles.slide}>
+            <RevenueByCountryChart data={revenueByCountryChartData} />
+          </div>
+        </div>
       </div>
 
       <div className={styles.controls}>
-        <button className={styles.btn} onClick={handlePrevious}>
+        <button className={styles.btn} onClick={handlePrevious} disabled={currentSlide === 0}>
           Previous
         </button>
 
         <div className={styles.dots}>
-          <div className={`${styles.dot} ${currentSlide === 0 ? styles.dotActive : ''}`}></div>
-          <div className={`${styles.dot} ${currentSlide === 1 ? styles.dotActive : ''}`}></div>
-          <div className={`${styles.dot} ${currentSlide === 2 ? styles.dotActive : ''}`}></div>
+          {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
+            <button
+              key={i}
+              type='button'
+              className={`${styles.dot} ${currentSlide === i ? styles.dotActive : ''}`}
+              onClick={() => goToSlide(i)}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
         </div>
 
-        <button className={styles.btn} onClick={handleNext}>
+        <button className={styles.btn} onClick={handleNext} disabled={currentSlide === SLIDE_COUNT - 1}>
           Next
         </button>
       </div>
