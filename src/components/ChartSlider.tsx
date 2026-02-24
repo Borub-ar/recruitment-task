@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import RevenueByCountryChart from './RevenueByCountryChart';
+import OrdersByDeviceChart from './OrdersByDeviceChart';
 
 import styles from './ChartSlider.module.css';
 
@@ -14,6 +16,10 @@ const ChartSlider = () => {
     country: order.country,
     quantity: order.quantity,
     unitPrice: order.unitPrice,
+  }));
+
+  const ordersByDeviceChartData = data.orders.map(order => ({
+    device: order.device,
   }));
 
   const handlePrevious = () => {
@@ -38,7 +44,7 @@ const ChartSlider = () => {
             <RevenueByCountryChart data={revenueByCountryChartData} />
           </div>
           <div className={styles.slide}>
-            <RevenueByCountryChart data={revenueByCountryChartData} />
+            <OrdersByDeviceChart data={ordersByDeviceChartData} />
           </div>
           <div className={styles.slide}>
             <RevenueByCountryChart data={revenueByCountryChartData} />
@@ -58,7 +64,6 @@ const ChartSlider = () => {
               type='button'
               className={`${styles.dot} ${currentSlide === i ? styles.dotActive : ''}`}
               onClick={() => goToSlide(i)}
-              aria-label={`Slide ${i + 1}`}
             />
           ))}
         </div>
