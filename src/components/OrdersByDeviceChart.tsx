@@ -1,7 +1,10 @@
-import ChartCard from './ChartCard/ChartCard';
-import aggregateOrdersByDevice from '../utils/aggregateOrdersByDevice';
-import { CHART_MARGIN_PIE } from '../constants/chartStyles';
 import { Pie, PieChart, Legend, ResponsiveContainer } from 'recharts';
+
+import ChartCard from './ChartCard/ChartCard';
+
+import aggregateOrdersByDevice from '../utils/aggregateOrdersByDevice';
+
+import { CHART_MARGIN_PIE } from '../constants/chartStyles';
 
 const DEVICE_COLORS: Record<string, string> = {
   mobile: '#06b6d4',
@@ -16,7 +19,7 @@ interface OrdersByDeviceProps {
 }
 
 const OrdersByDeviceChart = ({ data }: OrdersByDeviceProps) => {
-  const ordersByDevice = aggregateOrdersByDevice(data).map((item) => ({
+  const ordersByDevice = aggregateOrdersByDevice(data).map(item => ({
     ...item,
     fill: DEVICE_COLORS[item.device] ?? '#64748b',
   }));

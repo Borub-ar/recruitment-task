@@ -1,6 +1,9 @@
-import ChartCard from './ChartCard/ChartCard';
 import { BarChart, Bar, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+
+import ChartCard from './ChartCard/ChartCard';
+
 import aggregateRevenueByCategoryCustomer from '../utils/aggregateRevenueByCategoryCustomer';
+
 import {
   CHART_MARGIN_BAR,
   TOOLTIP_STYLE,

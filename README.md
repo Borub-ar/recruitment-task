@@ -45,9 +45,11 @@ Na podstawie analizy pliku `data.json` wybrałem trzy obszary, które najlepiej 
 # Instalacja zależności
 npm install
 
-# Serwer deweloperski
+# Serwer deweloperski (http://localhost:5173)
 npm run dev
 ```
+
+Aplikacja będzie dostępna pod adresem **http://localhost:5173** (domyślny port Vite).
 
 **Build produkcyjny:**
 
@@ -55,5 +57,7 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+Podgląd buildu: **http://localhost:4173**.
 
 Projekt uruchamia się standardowo przez Vite — wystarczy `npm install` i `npm run dev`.
