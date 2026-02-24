@@ -23,6 +23,12 @@ const ChartSlider = () => {
     device: order.device,
   }));
 
+  const revenueByCategoryCustomerData = data.orders.map(order => ({
+    quantity: order.quantity,
+    customerType: order.customerType,
+    unitPrice: order.unitPrice,
+  }));
+
   const handlePrevious = () => {
     setCurrentSlide(prev => Math.max(0, prev - 1));
   };
@@ -48,7 +54,7 @@ const ChartSlider = () => {
             <OrdersByDeviceChart data={ordersByDeviceChartData} />
           </div>
           <div className={styles.slide}>
-            <RevenueByCategoryCustomerChart data={revenueByCountryChartData} />
+            <RevenueByCategoryCustomerChart data={revenueByCategoryCustomerData} />
           </div>
         </div>
       </div>
