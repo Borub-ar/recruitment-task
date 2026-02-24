@@ -1,5 +1,15 @@
 import ChartCard from './ChartCard/ChartCard';
 import aggregateRevenueByCountry from '../utils/aggregateRevenueByCountry';
+import {
+  CHART_MARGIN_BAR,
+  TOOLTIP_STYLE,
+  TOOLTIP_CURSOR,
+  BAR_COLOR_PRIMARY,
+  ACTIVE_BAR_STYLE,
+  AXIS_TICK_STYLE,
+  CARTESIAN_GRID_PROPS,
+} from '../constants/chartStyles';
+
 import { BarChart, Bar, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
 interface RevenueByCountryChartProps {
@@ -13,47 +23,30 @@ interface RevenueByCountryChartProps {
 const RevenueByCountryChart = ({ data }: RevenueByCountryChartProps) => {
   const revenueByCountry = aggregateRevenueByCountry(data);
 
-  const chartMargin = {
-    top: 10,
-    right: 30,
-    left: 10,
-  };
-
-  const tooltipStyle = {
-    backgroundColor: 'var(--color-surface)',
-    border: '1px solid var(--color-border)',
-    borderRadius: '8px',
-    padding: '8px 12px',
-    boxShadow: '0 4px 12px #000000',
-  };
-
-  const barFill = '#7c3aed';
-
-  const activeBarStyle = {
-    fill: '#8b5cf6',
-    stroke: '#a78bfa',
-    strokeWidth: 1,
-  };
-
   return (
     <ChartCard title="Revenue by country (EUR)">
       <ResponsiveContainer width='100%' height='100%'>
-          <BarChart data={revenueByCountry} margin={chartMargin}>
-            <CartesianGrid strokeDasharray='5 5' stroke='var(--color-border)' />
-            <XAxis dataKey='country' stroke='white' tick={{ fill: 'var(--color-text-muted)' }} />
-            <YAxis
-              dataKey='revenue'
-              stroke='white'
-              tick={{ fill: 'var(--color-text-muted)' }}
-              tickFormatter={value => `${value} €`}
-            />
-            <Tooltip
-              contentStyle={tooltipStyle}
-              cursor={{ fill: '#1e3a5f' }}
-              formatter={(value: number | undefined) => [`${value != null ? value.toFixed(2) : '—'} €`, 'Revenue']}
-            />
-
-          <Bar dataKey='revenue' fill={barFill} stroke={barFill} radius={[4, 4, 0, 0]} activeBar={activeBarStyle} />
+        <BarChart data={revenueByCountry} margin={CHART_MARGIN_BAR}>
+          <CartesianGrid strokeDasharray={CARTESIAN_GRID_PROPS.strokeDasharray} stroke={CARTESIAN_GRID_PROPS.stroke} />
+          <XAxis dataKey='country' stroke='white' tick={AXIS_TICK_STYLE} />
+          <YAxis
+            dataKey='revenue'
+            stroke='white'
+            tick={AXIS_TICK_STYLE}
+            tickFormatter={(value) => `${value} €`}
+          />
+          <Tooltip
+            contentStyle={TOOLTIP_STYLE}
+            cursor={TOOLTIP_CURSOR}
+            formatter={(value: number | undefined) => [`${value != null ? value.toFixed(2) : '—'} €`, 'Revenue']}
+          />
+          <Bar
+            dataKey='revenue'
+            fill={BAR_COLOR_PRIMARY}
+            stroke={BAR_COLOR_PRIMARY}
+            radius={[4, 4, 0, 0]}
+            activeBar={ACTIVE_BAR_STYLE}
+          />
         </BarChart>
       </ResponsiveContainer>
     </ChartCard>

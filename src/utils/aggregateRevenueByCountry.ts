@@ -4,7 +4,7 @@ interface Order {
   unitPrice: number;
 }
 
-interface revenueByCountryResult {
+interface RevenueByCountryResult {
   country: string;
   revenue: number;
 }
@@ -18,7 +18,7 @@ const countryMapping: Record<string, string> = {
   NL: 'Holland',
 };
 
-const aggregateRevenueByCountry = (orders: Order[]): revenueByCountryResult[] => {
+const aggregateRevenueByCountry = (orders: Order[]): RevenueByCountryResult[] => {
   const revenueByCountry = orders.reduce<Record<string, { revenue: number }>>((acc, curr) => {
     const country = countryMapping[curr.country];
     const revenue = curr.quantity * curr.unitPrice;

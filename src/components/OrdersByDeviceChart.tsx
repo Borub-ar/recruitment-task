@@ -1,7 +1,6 @@
 import ChartCard from './ChartCard/ChartCard';
-
 import aggregateOrdersByDevice from '../utils/aggregateOrdersByDevice';
-
+import { CHART_MARGIN_PIE } from '../constants/chartStyles';
 import { Pie, PieChart, Legend, ResponsiveContainer } from 'recharts';
 
 const DEVICE_COLORS: Record<string, string> = {
@@ -17,17 +16,15 @@ interface OrdersByDeviceProps {
 }
 
 const OrdersByDeviceChart = ({ data }: OrdersByDeviceProps) => {
-  const ordersByDevice = aggregateOrdersByDevice(data).map(item => ({
+  const ordersByDevice = aggregateOrdersByDevice(data).map((item) => ({
     ...item,
     fill: DEVICE_COLORS[item.device] ?? '#64748b',
   }));
 
-  const chartMargin = { top: 20, right: 100, bottom: 20, left: 0 };
-
   return (
     <ChartCard title='Orders by device'>
       <ResponsiveContainer width='100%' height='100%'>
-        <PieChart margin={chartMargin}>
+        <PieChart margin={CHART_MARGIN_PIE}>
           <Legend layout='vertical' verticalAlign='middle' align='left' wrapperStyle={{ left: 10 }} />
 
           <Pie
