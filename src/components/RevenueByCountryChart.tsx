@@ -40,14 +40,23 @@ const RevenueByCountryChart = ({ data }: RevenueByCountryChartProps) => {
 
   return (
     <div className={styles.card}>
-      <h2 className={styles.title}>Revenue by country</h2>
+      <h2 className={styles.title}>Revenue by country (EUR)</h2>
 
       <ResponsiveContainer width='100%' height='100%'>
         <BarChart data={revenueByCountry} margin={chartMargin}>
           <CartesianGrid strokeDasharray='5 5' stroke='var(--color-border)' />
           <XAxis dataKey='country' stroke='white' tick={{ fill: 'var(--color-text-muted)' }} />
-          <YAxis dataKey='revenue' stroke='white' tick={{ fill: 'var(--color-text-muted)' }} />
-          <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#1e3a5f' }} />
+          <YAxis
+            dataKey='revenue'
+            stroke='white'
+            tick={{ fill: 'var(--color-text-muted)' }}
+            tickFormatter={value => `${value} €`}
+          />
+          <Tooltip
+            contentStyle={tooltipStyle}
+            cursor={{ fill: '#1e3a5f' }}
+            formatter={(value: number | undefined) => [`${value != null ? value.toFixed(2) : '—'} €`]}
+          />
 
           <Bar dataKey='revenue' fill={barFill} stroke={barFill} radius={[4, 4, 0, 0]} activeBar={activeBarStyle} />
         </BarChart>

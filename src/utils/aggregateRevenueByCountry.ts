@@ -16,7 +16,7 @@ const countryMapping: Record<string, string> = {
 const aggregateRevenueByCountry = (orders: Order[]) => {
   const revenueByCountry = orders.reduce<Record<string, { revenue: number }>>((acc, curr) => {
     const country = countryMapping[curr.country];
-    const revenue = Math.round(curr.quantity * curr.unitPrice);
+    const revenue = curr.quantity * curr.unitPrice;
 
     if (!acc[country]) {
       acc[country] = {
