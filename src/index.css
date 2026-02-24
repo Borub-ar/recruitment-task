@@ -148,6 +148,9 @@ table {
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1.5;
   font-family: var(--font-sans);
   background-color: var(--color-bg);

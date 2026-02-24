@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import RevenueByCountryChart from './RevenueByCountryChart';
 import OrdersByDeviceChart from './OrdersByDeviceChart';
+import RevenueByCategoryCustomerChart from './RevenueByCategoryCustomerChart';
 
 import styles from './ChartSlider.module.css';
 
@@ -47,7 +48,7 @@ const ChartSlider = () => {
             <OrdersByDeviceChart data={ordersByDeviceChartData} />
           </div>
           <div className={styles.slide}>
-            <RevenueByCountryChart data={revenueByCountryChartData} />
+            <RevenueByCategoryCustomerChart data={revenueByCountryChartData} />
           </div>
         </div>
       </div>

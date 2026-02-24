@@ -2,14 +2,12 @@ import ChartCard from './ChartCard/ChartCard';
 import aggregateRevenueByCountry from '../utils/aggregateRevenueByCountry';
 import { BarChart, Bar, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
-interface OrderData {
-  country: string;
-  quantity: number;
-  unitPrice: number;
-}
-
 interface RevenueByCountryChartProps {
-  data: OrderData[];
+  data: {
+    country: string;
+    quantity: number;
+    unitPrice: number;
+  }[];
 }
 
 const RevenueByCountryChart = ({ data }: RevenueByCountryChartProps) => {

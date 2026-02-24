@@ -10,12 +10,10 @@ const DEVICE_COLORS: Record<string, string> = {
   tablet: '#22c55e',
 };
 
-interface Order {
-  device: string;
-}
-
 interface OrdersByDeviceProps {
-  data: Order[];
+  data: {
+    device: string;
+  }[];
 }
 
 const OrdersByDeviceChart = ({ data }: OrdersByDeviceProps) => {
