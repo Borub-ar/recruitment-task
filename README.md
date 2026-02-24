@@ -1,62 +1,59 @@
-# Zadanie rekrutacyjne — Data Visualization (Frontend)
-
-## Kontekst
-Dane w pliku `data.json` pochodzą z platformy **e-commerce** i zawierają informacje o zamówieniach, m.in.:
-- czas,
-- lokalizację (kraj, miasto, dane geograficzne),
-- kategorie produktów,
-- ilości,
-- ceny,
-- dodatkowe metadane (płatność, typ klienta, urządzenie, czas dostawy).
-
-Twoim celem jest **zrozumienie danych**, wybranie **niektórych informacji** i przedstawienie ich w **czytelnej, sensownej formie wizualnej** (dataviz).
-
-
-## Zadanie
-Przeanalizuj dane i:
-- zdecyduj, które pola są dla Ciebie istotne,
-- agreguj dane w sposób, który uznasz za sensowny,
-
-Przygotuj **maksymalnie 3** wykresy.
-- samodzielnie zdecyduj, **jakie wizualizacje** przygotujesz (na podstawie wybranych przez Ciebie danych),
-- nie narzucamy konkretnych metryk ani podziałów,
-- zależy nam na **selekcji najistotniejszych dla Ciebie informacji**, nie na pokazaniu wszystkiego.
-
-
 ## Opis rozwiązania
-W pliku README dodaj opis, w którym wyjaśnisz:
-- jakie dane uznałeś/aś za kluczowe,
-- dlaczego wybrałeś/aś właśnie takie wizualizacje (typy wykresów).
 
+### Kluczowe dane
+
+Na podstawie analizy pliku `data.json` wybrałem trzy obszary, które najlepiej oddają kondycję sklepu e-commerce:
+
+1. **Przychód (revenue) — kraj i typ klienta**  
+   Pola: `country`, `quantity`, `unitPrice`, `customerType`, `category`.  
+   Przychód liczony jest jako `quantity × unitPrice` i agregowany według kraju oraz pary (kategoria, typ klienta). To pozwala ocenić, skąd pochodzi dochód i jaki jest udział nowych vs powracających klientów w poszczególnych kategoriach.
+
+2. **Liczba zamówień według urządzenia**  
+   Pole: `device`.  
+   Zliczam zamówienia w podziale na mobile, desktop i tablet. To ważne dla oceny zachowań zakupowych i priorytetów w rozwoju UI.
+
+3. **Przychód według kraju**  
+   Pola: `country`, `quantity`, `unitPrice`.  
+   Suma przychodu na kraj daje obraz geograficznego zasięgu sprzedaży i potencjalnych rynków do rozwoju.
+
+### Wizualizacje i uzasadnienie
+
+| Wykres                                    | Typ                       | Uzasadnienie                                                                                                                                                                   |
+| ----------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Revenue by country**                    | Wykres słupkowy           | Słupki czytelnie pokazują różnice w przychodzie między krajami. Ułatwiają porównanie i wskazanie liderów.                                                                      |
+| **Orders by device**                      | Wykres kołowy (donut)     | Proporcje (mobile/desktop/tablet) są naturalne dla wykresu kołowego. Donut zamiast koła zmniejsza dominację jednej serii i lepiej wyświetla etykiety.                          |
+| **Revenue by category and customer type** | Wykres słupkowy grupowany | Dwa słupki obok siebie (new / returning) w każdej kategorii pozwalają szybko porównać wpływ obu segmentów na przychód i zobaczyć, które kategorie przyciągają nowych klientów. |
+
+---
 
 ## Technologia i uruchomienie
-- interesuje nas **wyłącznie wersja desktopowa** (brak wymagań dot. mobile, nie dokładaj sobie niepotrzebnej pracy),
-- **nie narzucamy tech stacku** (technologia nie jest kryterium oceny):
-- framework: dowolny lub brak,
-- biblioteki: także dowolne. W naszej firmie skupiamy się głównie na Highcharts, ale nie wymagamy znajomości akurat tej biblioteki, więc jeśli chcesz użyć innej prostszej - gorąco do tego zachęcamy.
 
+### Stack
 
-## Uruchomienie projektu
-W pliku README opisz także wymagania (np. Node, Python, serwer lokalny) i kroki przydatne dla nas do uruchomienia Twojego projektu.
-Projekt powinien być **łatwy do uruchomienia lokalnie** bez dodatkowych wyjaśnień.
+- **React 19** + **TypeScript** + **Vite 7**
+- **Recharts** do wizualizacji
+- Wersja desktopowa
 
+### Wymagania
 
-## Czas
-Nie oczekujemy kompletnego rozbudowanego produktu.
-Interesuje nas:
-- sposób myślenia,
-- decyzje projektowe,
-- umiejętność pracy na danych,
-- czytelność wizualna. Duży plus za fajny design.
-Nie liczy się ilość/wielkość projektu, tylko jakość połączona z prostotą i umiejętność wytłumaczenia podejścia.
+- **Node.js** 18+ (zalecane 20+)
+- **npm** lub **pnpm**
 
-Przewidujemy, że wykonanie zadania powinno zająć maksymalnie kilka godzin.
-Na rozwiazanie masz dokładnie 7 dni licząc od daty otrzymania tego zadania.
+### Uruchomienie lokalnie
 
+```bash
+# Instalacja zależności
+npm install
 
-## Jak zacząć i wysłać rozwiązanie
-- wykonaj fork tego repozytorium na swoje konto GitHub,
-- upewnij się, że wszystkie zmiany są wypchnięte do Twojego repozytorium na GitHubie,
-- wyślij link do swojego repozytorium zawierającego rozwiązanie na adres e-mail: rekrutacja@blacklabel.net
+# Serwer deweloperski
+npm run dev
+```
 
-Nie wysyłaj Pull Requesta do tego repozytorium - oceniany będzie wyłącznie kod w Twoim forku.
+**Build produkcyjny:**
+
+```bash
+npm run build
+npm run preview
+```
+
+Projekt uruchamia się standardowo przez Vite — wystarczy `npm install` i `npm run dev`.
