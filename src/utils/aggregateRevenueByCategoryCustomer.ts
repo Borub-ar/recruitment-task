@@ -9,6 +9,7 @@ export interface RevenueByCategoryCustomerResult {
   category: string;
   newCustomersRevenue: number;
   returningCustomersRevenue: number;
+  max: number;
 }
 
 const aggregateRevenueByCategoryCustomer = (orders: Order[]): RevenueByCategoryCustomerResult[] => {
@@ -35,7 +36,11 @@ const aggregateRevenueByCategoryCustomer = (orders: Order[]): RevenueByCategoryC
     return acc;
   }, {});
 
-  return Object.entries(revenueByCategoryCustomer).map(item => ({ category: item[0], ...item[1] }));
+  return Object.entries(revenueByCategoryCustomer).map(([category, values]) => ({
+    category,
+    ...values,
+    max: Math.max(values.newCustomersRevenue, values.returningCustomersRevenue),
+  }));
 };
 
 export default aggregateRevenueByCategoryCustomer;
