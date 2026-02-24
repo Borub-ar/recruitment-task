@@ -27,6 +27,7 @@ const ChartSlider = () => {
     quantity: order.quantity,
     customerType: order.customerType,
     unitPrice: order.unitPrice,
+    category: order.category,
   }));
 
   const handlePrevious = () => {
