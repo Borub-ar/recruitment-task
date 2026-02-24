@@ -28,7 +28,9 @@ const aggregateRevenueByCountry = (orders: Order[]) => {
     return acc;
   }, {});
 
-  return Object.entries(revenueByCountry).map(item => ({ country: item[0], revenue: item[1].revenue }));
+  return Object.entries(revenueByCountry)
+    .map(item => ({ country: item[0], revenue: item[1].revenue }))
+    .sort((a, b) => a.country.localeCompare(b.country));
 };
 
 export default aggregateRevenueByCountry;
